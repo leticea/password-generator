@@ -14,9 +14,9 @@ const characters = {
 
 const generatePassword = () => {
   let staticPassword = "",
-  randomPassword = "",
-  excludeDuplicate = false,
-  passLength = lengthSlider.value;
+    randomPassword = "",
+    excludeDuplicate = false,
+    passLength = lengthSlider.value;
 
   options.forEach(option => {
     if (option.checked) {
@@ -24,7 +24,7 @@ const generatePassword = () => {
         staticPassword += characters[option.id];
 
       } else if (option.id === "spaces") {
-        staticPassword += `${staticPassword}`;
+        staticPassword += ` ${staticPassword} `;
 
       } else {
         excludeDuplicate = true;
@@ -37,8 +37,8 @@ const generatePassword = () => {
       Math.floor(Math.random() * staticPassword.length)
     ];
     if (excludeDuplicate) {
-      !randomPassword.includes(randomChar) | randomChar == " " ? 
-      randomPassword += randomChar : i--;
+      !randomPassword.includes(randomChar) || randomChar == " " ?
+        randomPassword += randomChar : i--;
 
     } else {
       randomPassword += randomChar;
@@ -48,8 +48,8 @@ const generatePassword = () => {
 };
 
 const updatePassIndicator = () => {
-  passIndicator.id = lengthSlider.value <= 8 ? "weak" : 
-  lengthSlider.value <= 16 ? "medium" : "strong";
+  passIndicator.id = lengthSlider.value <= 8 ? "weak" :
+    lengthSlider.value <= 16 ? "medium" : "strong";
 };
 
 const updateSlider = () => {
@@ -65,6 +65,10 @@ const copyPassword = () => {
   copyIcon.style.color = "#4285f4";
   setTimeout(() => {
     copyIcon.innerText = "copy_all";
-    copyIcon.style.color = "707070";
+    copyIcon.style.color = "#707070";
   }, 1500);
 };
+
+copyIcon.addEventListener("click", copyPassword);
+lengthSlider.addEventListener("input", updateSlider);
+generateBtn.addEventListener("click", generatePassword);
