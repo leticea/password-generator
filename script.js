@@ -37,11 +37,17 @@ const generatePassword = () => {
       Math.floor(Math.random() * staticPassword.length)
     ];
     if (excludeDuplicate) {
-      !randomPassword.includes(randomChar) | randomChar == " " 
-      ? randomPassword += randomChar : i--;
+      !randomPassword.includes(randomChar) | randomChar == " " ? 
+      randomPassword += randomChar : i--;
 
     } else {
       randomPassword += randomChar;
     }
   }
+  passwordInput.value = randomPassword;
+};
+
+const updatePassIndicator = () => {
+  passIndicator.id = lengthSlider.value <= 8 ? "weak" : 
+  lengthSlider.value <= 16 ? "medium" : "strong";
 };
