@@ -58,4 +58,25 @@ body {
   color: #707070;
 }
 
+.input-box span:hover {
+  color: #43A047 !important;
+}
+
+.wrapper .pass-indicator {
+  width: 100%;
+  height: 4px;
+  position: relative;
+  margin-top: 0.75rem;
+  border-radius: 25px;
+}
+
+.pass-indicator::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
 
