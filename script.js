@@ -9,7 +9,7 @@ const characters = {
   lowercase: "abcdefghijklmnopqrstuvwxyz",
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   numbers: "0123456789",
-  symbols: "!$%&|[](){}:;.,*+-#@<>~"
+  symbols: "!$%&|[](){}:;.,*+-#@<>~",
 };
 
 const generatePassword = () => {
@@ -18,14 +18,12 @@ const generatePassword = () => {
     excludeDuplicate = false,
     passLength = lengthSlider.value;
 
-  options.forEach(option => {
+  options.forEach((option) => {
     if (option.checked) {
       if (option.id !== "exc-duplicate" && option.id !== "spaces") {
         staticPassword += characters[option.id];
-
       } else if (option.id === "spaces") {
         staticPassword += ` ${staticPassword} `;
-
       } else {
         excludeDuplicate = true;
       }
@@ -33,13 +31,12 @@ const generatePassword = () => {
   });
 
   for (let i = 0; i < passLength; i++) {
-    let randomChar = staticPassword[
-      Math.floor(Math.random() * staticPassword.length)
-    ];
+    let randomChar =
+      staticPassword[Math.floor(Math.random() * staticPassword.length)];
     if (excludeDuplicate) {
-      !randomPassword.includes(randomChar) || randomChar == " " ?
-        randomPassword += randomChar : i--;
-
+      !randomPassword.includes(randomChar) || randomChar == " "
+        ? (randomPassword += randomChar)
+        : i--;
     } else {
       randomPassword += randomChar;
     }
@@ -48,8 +45,12 @@ const generatePassword = () => {
 };
 
 const updatePassIndicator = () => {
-  passIndicator.id = lengthSlider.value <= 8 ? "weak" :
-    lengthSlider.value <= 16 ? "medium" : "strong";
+  passIndicator.id =
+    lengthSlider.value <= 8
+      ? "weak"
+      : lengthSlider.value <= 16
+      ? "medium"
+      : "strong";
 };
 
 const updateSlider = () => {
